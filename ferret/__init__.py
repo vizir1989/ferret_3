@@ -1,16 +1,14 @@
 import os
 
 import click
-from flask import Flask, jsonify
-from flask import request, session
+from flask import Flask
 from flask.cli import with_appcontext
-from flask_login import logout_user, current_user, LoginManager
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-
-from user.models import User
 
 
 db = SQLAlchemy()
+lm = LoginManager()
 
 
 def create_app(test_config=None):
@@ -45,16 +43,11 @@ def create_app(test_config=None):
     db.init_app(app)
     app.cli.add_command(init_db_command)
 
+    lm.init_app(app)
+
     import user
 
     app.register_blueprint(user.bp)
-
-    lm = LoginManager(app)
-
-    @lm.user_loader
-    def load_user(user_id):
-        """User loader callback for Flask-Login."""
-        return User.query.get(int(user_id))
 
     return app
 

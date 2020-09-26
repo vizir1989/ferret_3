@@ -1,11 +1,16 @@
-from werkzeug.security import generate_password_hash, check_password_hash
-import os
 import base64
+import os
+from datetime import datetime, timedelta
+
+from flask import current_app
+from flask_login import UserMixin
 from pyotp import totp
-from app import db
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from ferret import db
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """User model."""
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
