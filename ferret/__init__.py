@@ -16,7 +16,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
     # some deploy systems set the database url in the environ
-    db_url = os.environ.get("DATABASE_URL")
+    db_url = os.environ.get("SQLALCHEMY_DATABASE_URI")
 
     if db_url is None:
         # default to a sqlite database in the instance folder
