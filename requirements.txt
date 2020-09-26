@@ -21,3 +21,5 @@ packaging~=20.4
 pyotp~=2.4.0
 pyjwt~=1.0.0
 cryptography~=2.9.2
+marshmallow~=3.8.0
+pycparser~=2.20

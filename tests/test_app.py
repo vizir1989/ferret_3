@@ -1,10 +1,11 @@
 import json
 
-from flask import request
 from pyotp import totp
 
 username_1 = 'test'
 password_1 = '12345678'
+short_username = 'tes'
+short_password = '123'
 
 
 def login(client, username, password):
@@ -96,3 +97,15 @@ def test_input_token(client):
     rv = input_token(client, str(token))
     response = json.loads(rv.data)
     assert response['result']
+
+
+def test_shor_name(client):
+    rv = sign_up(client, short_username, password_1)
+    response = json.loads(rv.data)
+    assert not response['result']
+
+
+def test_shor_password(client):
+    rv = sign_up(client, username_1, short_password)
+    response = json.loads(rv.data)
+    assert not response['result']

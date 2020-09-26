@@ -1,8 +1,6 @@
 import base64
 import os
-from datetime import datetime, timedelta
 
-from flask import current_app
 from flask_login import UserMixin
 from pyotp import totp
 from werkzeug.security import generate_password_hash, check_password_hash
