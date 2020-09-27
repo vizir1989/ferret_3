@@ -1,7 +1,5 @@
 # ferret_3
 
-# Checker
-
 ## What is this?
 
 A system that provide 4 endpoints. 
